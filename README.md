@@ -1,37 +1,49 @@
 **LLM Project:**
-# Title here
+# Beyond Sentiment: Turning Negative Reviews into Actionable Insights
 
 ## **Project Task**
-(fill in details about your chosen project)
-
-### Dataset
-(fill in details about the dataset you're using)
+This project goes beyond traditional sentiment analysis by integrating a more complex emotion detection into review processing. Using fine-tuned LLMs and emotion classification, we analyze negative reviews to uncover deeper emotional context and generate actionable insights. Instead of simply labeling sentiment as “positive” or “negative,” this approach identifies why an experience went wrong and how to improve it, allowing businesses to address concerns more effectively with meaningful, constructive feedback.
 
 ### Deliverable
-1.
-2.
+A model that can:
+- Analyze sentiment and emotions in reviews.
+- Turn complaints into useful, constructive insights.
+- (If time allows) Provide an easy-to-use interface.
 
 ### Who benefits?
-1. A
-    - Who: 
-    - Why: 
-    - How: 
-2. B
-    - Who: 
-    - Why: 
-    - How: 
-3. C
-    - Who: 
-    - Why: 
-    - How: 
+1. Small & Medium Businesses (SMBs)
+    - **Who:** Local restaurants, cafes, salons, retailers, hotels.
+    - **Why:** They often lack dedicated data teams and automated feedback analysis tools.
+    - **How:** Quickly identify common customer pain points; Get actionable suggestions without manually analyzing hundreds of reviews.
+
+2. Online Marketplace Sellers
+    - **Who:** Small e-commerce businesses that sell products on Etsy, eBay, Amazon, Shopify.
+    - **Why:** These sellers rely on customer reviews but may lack the tools to help them generate insights from them.
+    - **How:** Quickly extract common trends from reviews; Improve product quality based on insights.
+
+3. Customer Support & Feedback Teams
+    - **Who:** Customer service managers in larger companies.
+    - **Why:** Many businesses rely on human agents to manually review feedback—this would automate and streamline that process effectively.
+    - **How:** Suggest proactive responses to customer concerns.
 
 <br>
 
 ## **Process Overview**
 ![Process Visual. To follow.]()
 
-### Pre-trained Models
-(fill in details about the pre-trained model you selected)
+### Pre-trained Models, Datasets & API
+#### Datasets:
+1. [YELP's Full Review Dataset](https://huggingface.co/datasets/Yelp/yelp_review_full)
+    > The page implies it may contain non-english reviews, so I'll try and keep just english ones.
+2. [GoEmotions Dataset](https://huggingface.co/datasets/google-research-datasets/go_emotions)
+    > It has 27 emotions/sentiments that i'll be reducing to 10.
+
+#### Pre-trained Models:
+1. [RoBERTa-base](https://huggingface.co/FacebookAI/roberta-base)
+    - For training an Emotion Classification Model
+2. [Mistral-7B](https://huggingface.co/mistralai/Mistral-7B-v0.1) w/ QLoRA
+    - For text generation of constructive feedback
+
 
 ### Performance Metrics
 (fill in details about your chosen metrics and results)
@@ -42,11 +54,14 @@
 <br>
 
 ## **Reproducibility**
-### file structure
+### Repo File Structure
+>> Later
 
-### rig used deets
+### Rig:
+- **GPU:** 12GB NVidia RTX 3060TI
+- **RAM:** 16GB
 
-### env info & installation
+### Setting up Dependencies
 1. Create Anaconda Env
     ```bash
     conda create -n ENV_NAME python=3.9
@@ -54,7 +69,7 @@
     ```
 2. Install dependencies
     ```bash
-    conda install -c conda-forge jupyterlab scikit-learn tensorflow fastapi
+    conda install -c conda-forge jupyterlab scikit-learn tensorflow fastapi joblib
 
     conda install -c anaconda ipykernel
 
