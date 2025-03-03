@@ -32,18 +32,14 @@ A model that can:
 ![Process Visual. To follow.]()
 
 ### Pre-trained Models, Datasets & API
-#### Datasets:
-1. [YELP's Full Review Dataset](https://huggingface.co/datasets/Yelp/yelp_review_full)
-    > The page implies it may contain non-english reviews, so I'll try and keep just english ones.
-2. [GoEmotions Dataset](https://huggingface.co/datasets/google-research-datasets/go_emotions)
-    > It has 27 emotions/sentiments that i'll be reducing to 10.
+#### Dataset: [YELP's Full Review Dataset](https://huggingface.co/datasets/Yelp/yelp_review_full)
+- The page implies it may contain non-english reviews, so I'll try and keep just english ones.
 
-#### Pre-trained Models:
-1. [RoBERTa-base](https://huggingface.co/FacebookAI/roberta-base)
-    - For training an Emotion Classification Model
-2. [Mistral-7B](https://huggingface.co/mistralai/Mistral-7B-v0.1) w/ QLoRA
-    - For text generation of constructive feedback
+#### API: [Claude]() ! GET LINK !
+- Generate constructive feedback on YELP reviews + emotions to train mistral-7b with.
 
+#### Pre-trained Model: [Mistral-7B](https://huggingface.co/mistralai/Mistral-7B-v0.1) w/ QLoRA
+- For text generation of constructive feedback
 
 ### Performance Metrics
 (fill in details about your chosen metrics and results)
@@ -69,17 +65,17 @@ A model that can:
     ```
 2. Install dependencies
     ```bash
-    conda install -c conda-forge jupyterlab scikit-learn tensorflow fastapi joblib
+    conda install -c conda-forge jupyterlab scikit-learn tensorflow fastapi joblib fastparquet pyarrow
 
     conda install -c anaconda ipykernel
 
-    conda install pandas requests numpy scipy matplotlib seaborn nltk spacy gensim textblob
+    conda install pandas requests numpy scipy matplotlib seaborn nltk spacy gensim textblob ipywidgets
 
     conda install -c plotly plotly=5.24.1
 
-    conda install transformers datasets torch
+    conda install transformers datasets
     
-    conda install pytorch torchvision torchaudio pytorch-cuda=11.8 -c pytorch -c nvidia
+    conda install pytorch torchvision torchaudio torch pytorch-cuda=11.8 -c pytorch -c nvidia
     ```
     > Note: The `pytorch-cuda=11.8 -c nvidia` is a config specific to my rig. Look up on what would work best on your device.
 3. Register Jupyter kernel
