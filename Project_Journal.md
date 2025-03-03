@@ -33,12 +33,13 @@ From [GoEmotions README](https://github.com/google-research/google-research/blob
 GoEmotions contains 58k carefully curated Reddit comments labeled for 27 emotion categories or Neutral.
 
 The emotion categories are:
-_admiration, amusement, anger, annoyance, approval,
-caring, confusion, curiosity, desire, disappointment,
-disapproval, disgust, embarrassment, excitement, fear,
-gratitude, grief, joy, love, nervousness,
-optimism, pride, realization, relief, remorse,
-sadness, surprise_.
+_admiration, amusement, anger, annoyance,
+approval, caring, confusion, curiosity,
+desire, disappointment, disapproval, disgust, 
+embarrassment, excitement, fear, gratitude, 
+grief, joy, love, nervousness,
+optimism, pride, realization, relief, 
+remorse, sadness, surprise_.
 ```
 
 **<center>Thoughts:</center>**
