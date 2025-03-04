@@ -31,15 +31,24 @@ A model that can:
 ## **Process Overview**
 ![Process Visual. To follow.]()
 
+1. Environment Set-Up
+2. Fetch and pre-process the dataset for inference.
+3. Use SamLowe's RoBERTa-based emotion classification model on dataset.
+4. Inspect and pre-process the dataset as input for output generation from a 'bigger' model: Mistral 7B
+5. Finetune 'smaller' model: Phi-2 for inference & Evaluate.
+6. Deployment
+7. Interface Building.
+
+
 ### Pre-trained Models, Datasets & API
-#### Dataset: [YELP's Full Review Dataset](https://huggingface.co/datasets/Yelp/yelp_review_full)
+Dataset: [YELP's Full Review Dataset](https://huggingface.co/datasets/Yelp/yelp_review_full)
 - The page implies it may contain non-english reviews, so I'll try and keep just english ones.
 
-#### API: [Claude]() ! GET LINK !
-- Generate constructive feedback on YELP reviews + emotions to train mistral-7b with.
+Pre-trained Model 01: [Mistral-7B-v0.1](https://huggingface.co/mistralai/Mistral-7B-v0.1)
+- For text generation of constructive feedback to finetune phi-2 with.
 
-#### Pre-trained Model: [Mistral-7B](https://huggingface.co/mistralai/Mistral-7B-v0.1) w/ QLoRA
-- For text generation of constructive feedback
+Pre-trained Model 02: [Microsoft/phi-2](https://huggingface.co/microsoft/phi-2)
+- Finetune to generate constructive feedback on YELP reviews + emotions.
 
 ### Performance Metrics
 (fill in details about your chosen metrics and results)
