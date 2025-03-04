@@ -1,17 +1,14 @@
 # Notes & Scribbles
-## Thoughts/Ideas
-
-
 ## Planning
 | Process |                                                       | Status   |
 |----|------------------------------------------------------------|----------|
-| 01 | Environment Set-Up                                         | Complete |
-| 02 | Post project details on Discord                            | Complete |
-| 03 | Inspect, Clean & Prep: YELP Dataset                        | Complete |
-| 04 | -- Tokenize: YELP Dataset --                               | Complete |
-| 05 | Check with a mentor: Compass AR                            | Complete |
-| 06 | Classify YELP Dataset                                      | Complete |
-| 07 | Inspect & Prep New Dataset                                 | Pending |
+| 01 | Environment Set-Up                                         | Completed, Day 01 |
+| 02 | Post project details on Discord                            | Completed, Day 01 |
+| 03 | Inspect, Clean & Prep: YELP Dataset                        | Completed, Day 02 |
+| 04 | -- Tokenize: YELP Dataset --                               | Completed, Day 02 |
+| 05 | Check with a mentor: Compass AR                            | Completed, Day 03 |
+| 06 | Classify YELP Dataset                                      | Completed, Day 03 |
+| 07 | Inspect & Prep New Dataset                                 | Completed, Day 03 |
 | 08 | Get Claude API access; Create new Dataset                  | Pending |
 | 09 | Prep/Train Mistral-7B                                      | Pending |
 | 10 | Evaluate model                                             | Pending |
@@ -25,8 +22,22 @@
 
 <br>
 
+### Thoughts/Ideas
+
+
+### Etc.
+1. On the Yelp Dataset...
+    - There were reviews being categorized as `class: float` and it broke the inference during the emotion classification phase. Upon further inspection, they were reviews with no words at all, just special characters/punctuations&rarr;These rows were removed. There was 13.
+2. How would I output emotions if the main model won't be necessarily linked to the first one when running its own inference? That's not...not doable. Inside the function for the final output... call the classification function, and then run on mistral. This way I can output both emotion and feedback.
+    - I'll skip the part where it does batch processing of CSVs in the web app for now. I had to run the 1st inference on our data overnight. It will not do great on a 5 min demo.
+    - It has to pre-process the review/clean it on input. This is gonna be one long py file.
+    - It doesn't have to see that again, the output could just be... emotions gathered + constructive feedback. Would be nice if it could do batch processing, but that can be compute intensive depending on how much data they have.
+3. Mistral has 7B params, i'll try to find a smaller one. SamLowe's has 125M.
+
+<br>
+
 ## Found a pre-trained model by SamLowe
-I found [this pre-trained model by Sam Lowe](https://huggingface.co/SamLowe/roberta-base-go_emotions). It was trained on RoBERTa as well, but I decided not to use it. I find 27 emotions to be too complex, as it's not going to be my final output. I can remove, combine/merge specific emotions to reduce redundancy and to tailor the dataset to our purposes more effectively. The dataset was from social media(Reddit), so it may be a bit more emotionally nuanced than reviews.
+I found [this pre-trained model by Sam Lowe](https://huggingface.co/SamLowe/roberta-base-go_emotions). It was trained on RoBERTa as well, but I debated not to use it. I find 27 emotions to be too complex, as it's not going to be my final output. I can remove, combine/merge specific emotions to reduce redundancy and to tailor the dataset to our purposes more effectively. The dataset was from social media(Reddit), so it may be a bit more emotionally nuanced than reviews.
 
 From [GoEmotions README](https://github.com/google-research/google-research/blob/master/goemotions/README.md):
 ```
@@ -85,15 +96,15 @@ What's left of the 27:
 <br>
 
 ## Time constraints
-I'll just use SamLowe's model and save me about 3-4 days of cleaning/pre-processing, training, etc. Makes up for some time to do the interface.
+Day 2, I decided to just use SamLowe's model and save me about 3-4 days of cleaning/pre-processing, training, etc. Makes up for some time to do the interface or finetuning mistral.
 
 ## Build Interface -- Flutterflow... It allows API calls.
 - UI
-- Upload csv...?
-	- Add columns: Emotions
-	- Add columns: Generated insights for each review
-- Analyze btn
-- Loading screen!
+- Enter review...
+	- Output emotion classification result.
+	- Output generated insights.
+- Analyze btn, linked to function
+- Loading indicators
 - Output csv with... review + emotion + constructive feedback
   > - Then the output can be reviewed for accuracy by a human before running with it.
   >   - Explainability of output&mdash;*Did the model do goodd?*
