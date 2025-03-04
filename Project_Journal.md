@@ -7,7 +7,7 @@
 |----|------------------------------------------------------------|----------|
 | 01 | Environment Set-Up                                         | Complete |
 | 02 | Post project details on Discord                            | Complete |
-| 03 | Inspect, Clean & Prep: YELP Dataset                        | Pending |
+| 03 | Inspect, Clean & Prep: YELP Dataset                        | Complete |
 | 04 | -- Tokenize: YELP Dataset --                               | Pending |
 | 05 | Check with a mentor: Compass AR                            | Pending |
 | 06 | Classify YELP Dataset                                      | Pending |
