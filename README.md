@@ -44,7 +44,7 @@ A model that can:
 Dataset: [YELP's Full Review Dataset](https://huggingface.co/datasets/Yelp/yelp_review_full)
 - The page implies it may contain non-english reviews, so I'll try and keep just english ones.
 
-Pre-trained Model 01: [Mistral-7B-v0.1](https://huggingface.co/mistralai/Mistral-7B-v0.1)
+Pre-trained Model 01: [TheBloke/Mistral-7B-Instruct-v0.1-GGUF](https://huggingface.co/mistralai/Mistral-7B-v0.1)
 - For text generation of constructive feedback to finetune phi-2 with.
 
 Pre-trained Model 02: [Microsoft/phi-2](https://huggingface.co/microsoft/phi-2)
@@ -74,19 +74,19 @@ Pre-trained Model 02: [Microsoft/phi-2](https://huggingface.co/microsoft/phi-2)
     ```
 2. Install dependencies
     ```bash
-    conda install -c conda-forge jupyterlab scikit-learn tensorflow fastapi joblib fastparquet pyarrow
+    conda install -c conda-forge jupyterlab scikit-learn tensorflow fastapi joblib fastparquet pyarrow pillow
 
     conda install -c anaconda ipykernel
 
-    conda install pandas requests numpy scipy matplotlib seaborn nltk spacy gensim textblob ipywidgets
+    conda install pandas requests numpy matplotlib seaborn nltk textblob ipywidgets
 
     conda install -c plotly plotly=5.24.1
 
-    conda install transformers datasets
+    conda install transformers datasets accelerate sentencepiece
     
-    conda install pytorch torchvision torchaudio torch pytorch-cuda=11.8 -c pytorch -c nvidia
+    pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu126
+
     ```
-    > Note: The `pytorch-cuda=11.8 -c nvidia` is a config specific to my rig. Look up on what would work best on your device.
 3. Register Jupyter kernel
 
     `python -m ipykernel install --user --name=ENV_NAME`

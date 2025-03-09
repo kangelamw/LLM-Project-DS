@@ -19,3 +19,4 @@ def generate_file_structure(start_path, indent=''):
       else:
         file_structure += f'{indent}├── {item}\n'
   return file_structure
+

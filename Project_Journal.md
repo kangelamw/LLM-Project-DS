@@ -57,9 +57,13 @@ This may be a bit of a wall. Just a bunch of thought processes. It's semi-struct
 
 - Before I could use the models, I had to turn on developer mode on windows. Just go to settings and search for it, [or read it for yourself here](https://learn.microsoft.com/en-us/windows/apps/get-started/enable-your-device-for-development).
 
+- Also had to install [CUDA from NVIDIA](https://developer.nvidia.com/cuda-downloads?target_os=Windows&target_arch=x86_64&target_version=11&target_type=exe_local) to be able to actually use my gpu. I clued in when my RAM was screaming at 98% while the GPU was just chilling at 0%.
+
 - For training time, I try to do 'ground work' during the day, typing out the code, reading up on what to do, scribbling away on this journal. I start running/testing the inferences at night where it does the full inference. I check on it every 1-2 hours through the night, it's done by morning. I try to get the bugs out of the way before running the full thing, it's mainly checking if the PC is still on and the cell is still running&mdash;because cats.
 
 - I still have a use for mistral-7b, but instead of finetuning it, it'll just be the 'big model to learn from' for phi-2. I think a smaller model to run the final output with would be better for performance. I think the goal of finetuning is taking a model beyond its general capabilities for our specific task. This is a good experiment.
+
+- mistral's quantized model isn't going great. I can't seem to find any info about running it on the GPU, it may not even support it. I've spent enough time (24h) on getting it to work. I'll use the mistral base model and quantize it myself.
 
 - I'm not sure how to evaluate it yet. There's a module called 'judges' for llm outputs. I'll read up on how it could be utilized for this project when I'm close to that step.
 
