@@ -1,11 +1,12 @@
 # Notes & Scribbles
-This may be a bit of a wall. Just a bunch of thought processes. It's semi-structured at best. It's sub-thoughts with sub-thoughts. A dendogram, but new branches can appear up top, no one knows when, where or why.
+This may be a bit of a wall. Just a bunch of thought processes. It's semi-structured at best. It's sub-thoughts with sub-thoughts. A dendogram, but new branches can appear sporadically.
 
 **<span style="font-size:18px;">Table of Contents</span>**
 - [Project Details in steps](#planning)
 - [Thoughts & Ideas](#thoughtsideas)
   - [Pre-trained Model by Sam Lowe](#found-a-pre-trained-model-by-samlowe)
   - [Time Constraints](#time-constraints)
+  - [Final Function STructure](#final-function-structure)
   - [Build Interface](#build-interface----flutterflow-it-allows-api-calls)
 - [Resources](#resources)
 
@@ -23,10 +24,11 @@ This may be a bit of a wall. Just a bunch of thought processes. It's semi-struct
 | 05 | Check with a mentor: Compass AR                            | Completed, Day 03 |
 | 06 | Classify YELP Dataset                                      | Completed, Day 03 |
 | 07 | Inspect & Prep New Dataset                                 | Completed, Day 03 |
-| 08 | Get Claude API access; Create new Dataset                  | Pending |
-| 09 | Prep/Train Mistral-7B                                      | Pending |
+| 08 | Generate outputs from mistral-7b to fine-tune phi-2 with.  | Completed, Day 08 |
+| 09 | Prep/Train phi-2                                           | Pending |
 | 10 | Evaluate model                                             | Pending |
-| 11 | Deploy & Test API                                          | Pending |
+| 11 | Build final function to generate output.                   | Pending |
+| 12 | Deploy & Test API                                          | Pending |
 | -- | **Create Interface *(If we have at least 2-3 days left)*** | --- --- |
 | 01 | Build Flutterflow UI                                       | Pending |
 | 02 | Test/Connect API                                           | Pending |
@@ -59,13 +61,17 @@ This may be a bit of a wall. Just a bunch of thought processes. It's semi-struct
 
 - Also had to install [CUDA from NVIDIA](https://developer.nvidia.com/cuda-downloads?target_os=Windows&target_arch=x86_64&target_version=11&target_type=exe_local) to be able to actually use my gpu. I clued in when my RAM was screaming at 98% while the GPU was just chilling at 0%.
 
-- For training time, I try to do 'ground work' during the day, typing out the code, reading up on what to do, scribbling away on this journal. I start running/testing the inferences at night where it does the full inference. I check on it every 1-2 hours through the night, it's done by morning. I try to get the bugs out of the way before running the full thing, it's mainly checking if the PC is still on and the cell is still running&mdash;because cats.
+- For training time, I try to do 'ground work' during the day, typing out the code, reading up on what to do, scribbling away on this journal. I start running/testing the inferences at night where it can do the full inference uninterrupted by random daytime browsing. I check on it every 1-2 hours through the night, it's done by morning. I try to get the bugs out of the way before running the full thing, it's mainly checking if the PC is still on and the cell is still running&mdash;because cats.
 
 - I still have a use for mistral-7b, but instead of finetuning it, it'll just be the 'big model to learn from' for phi-2. I think a smaller model to run the final output with would be better for performance. I think the goal of finetuning is taking a model beyond its general capabilities for our specific task. This is a good experiment.
 
-- mistral's quantized model isn't going great. I can't seem to find any info about running it on the GPU, it may not even support it. I've spent enough time (24h) on getting it to work. I'll use the mistral base model and quantize it myself.
+- Mistral's quantized model isn't going great. I can't seem to find any info about running it on the GPU, it may not even support it. I've spent enough time (24h) on getting it to work. I'll use the mistral base model and quantize it myself&mdash;**It took me days, but it WORKED**
 
-- I'm not sure how to evaluate it yet. There's a module called 'judges' for llm outputs. I'll read up on how it could be utilized for this project when I'm close to that step.
+- I'm not sure how to evaluate it yet. There's a module called 'judges' for llm outputs. I'll read up on how it could be utilized for this project when I'm closer to that step/while waiting for inference to finish. A lot of this project is learning it as I go...
+
+- I've read through a couple of papers (referenced below) on ways of evaluating a model's qualitative outputs. I've thought of thematic analysis, which i thought was a fancy name for topic modeling + classification. I've done this before during my undergrad, but by hand. It was not fun. It also wouldn't be as relevant to this current step in the project where I'm getting phi-2 trained on mistral's responses.
+
+- phi-2 was initialized and tested (if it was working/loaded properly) and so far, not looking very promising. I ran a few prompts the same ones that mistral got, and phi-2 was trying to tell me the story of the business owner and how they felt about their cooking getting ridiculed by the customer. Hilarious, but not what I want.
 
 <br>
 
@@ -133,6 +139,25 @@ Day 2, I decided to just use SamLowe's model and save me about 3-4 days of clean
 
 I can still go back and try to apply this later, but the research/readings I'd need to do for this might take a day or two + actually doing it. I'll go back if I have time.
 
+I *may* have mis-stepped and tried generating 650k (train rows) to train phi-2 with. For fine-tuning, I've read that 5-10k should be enough, I sampled the data accordingly. (Stratified) I have a total of 15k to train with and 3k to test with. I'm gonna train **as needed** with 2.5k at a time.
+
+### Final function structure
+Input:
+- label (number of stars)
+- review
+  - needs cleaned, so call the text cleaning function
+- emotions
+  - needs to call SamLowe's model
+
+To turn into prompt... call the prompt creation function
+- call phi-2 for generation
+- clean output as needed
+- return the feedback and emotion gathered
+
+I created a whole section for this, I thought it was gonna be harder than this to mentally process. Not really, but now I've written down a step-by-step structure to follow and go back to.
+
+<br>
+
 ### Build Interface -- Flutterflow... It allows API calls.
 - UI
 - Enter review...
@@ -145,6 +170,21 @@ I can still go back and try to apply this later, but the research/readings I'd n
   >   - Explainability of output&mdash;*Did the model do goodd?*
   > - Feedback output can be processed further/summarized.
   > - Emotion classification is retained, get an overview of HOW the customers generally feel about the service.
+
+I started this on day 08. With FlutterFlow, it's not that hard to build the UI. Just really trying to fill the time while inference is taking its time, I've optimized it the best way I was able to do. It's a waiting game.
+
+Finished the UI in about 2-3 hrs.
+
+<br>
+
+### Judges/Evaluating the model
+We need the 'grader' kind. They have a classification one as well.
+- Relevance Evaluation (from judges.graders.relevance import ReliableCIRelevance)
+- Response Quality Evaluation (from judges.graders.response_quality import MTBenchChatBotResponseQuality)
+
+I am debating trying BERTscore and MoverScore as well, both are non-LLM scorer according to [this](https://www.confident-ai.com/blog/llm-evaluation-metrics-everything-you-need-for-llm-evaluation) article.
+
+
 
 ---
 
@@ -161,6 +201,16 @@ I can still go back and try to apply this later, but the research/readings I'd n
 - https://github.com/google-research/google-research/blob/master/goemotions/README.md
 - https://huggingface.co/datasets/google-research-datasets/go_emotions
 
+**Leveraging LLM-as-a-Judge for Automated and Scalable Evaluation**
+- https://www.confident-ai.com/blog/why-llm-as-a-judge-is-the-best-llm-evaluation-method
+- https://github.com/confident-ai/deepeval
+
+**Reliable Confidence Intervals for Information Retrieval Evaluation Using Generative A.I.**
+- https://dl.acm.org/doi/10.1145/3637528.3671883
+
+**Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena**
+- https://arxiv.org/abs/2306.05685
+
 ---
 
 ### <span style="font-size:22px;">Models</span>
@@ -175,6 +225,9 @@ I can still go back and try to apply this later, but the research/readings I'd n
 
 **Mistral-7B-v0.1**
 - https://huggingface.co/mistralai/Mistral-7B-v0.1
+
+**judges**
+- https://pypi.org/project/judges/
 
 <br>
 

@@ -11,6 +11,8 @@ A model that can:
 - (If time allows) Provide an easy-to-use interface.
 
 ### Who benefits?
+> You could fine-tune the final phi-2 trained model to your specific industry. I didn't do it here, but if you do it by batch, you could also get a summarization model to generate a summary of the outputs, and then you have your report.
+
 1. Small & Medium Businesses (SMBs)
     - **Who:** Local restaurants, cafes, salons, retailers, hotels.
     - **Why:** They often lack dedicated data teams and automated feedback analysis tools.
@@ -38,6 +40,7 @@ A model that can:
 5. Finetune 'smaller' model: Phi-2 for inference & Evaluate.
 6. Deployment
 7. Interface Building.
+8. Deployment
 
 
 ### Pre-trained Models, Datasets & API
@@ -51,7 +54,13 @@ Pre-trained Model 02: [Microsoft/phi-2](https://huggingface.co/microsoft/phi-2)
 - Finetune to generate constructive feedback on YELP reviews + emotions.
 
 ### Performance Metrics
-(fill in details about your chosen metrics and results)
+I'm gonna be using LLM-as-a-Judge approach here, more specifically, [`judges` module](https://pypi.org/project/judges/)
+
+I'll be using the grader, and the ff metrics:
+- Relevance Evaluation
+- Response Quality Evaluation
+
+My current benchmark is mistral7b's generated responses to compare against non-fine-tuned phi-2's responses and the fine-tuned version's responses. It will serve as the 'ground truth' and I've read some of mistral's responses, they were pretty good. It could be better with some fine-tuning, but what we want is a more portable, smaller model.
 
 ### Hyperparameters
 (fill in details about which hyperparameters you found most important/relevant while optimizing your model)
@@ -82,7 +91,7 @@ Pre-trained Model 02: [Microsoft/phi-2](https://huggingface.co/microsoft/phi-2)
 
     conda install -c plotly plotly=5.24.1
 
-    conda install transformers datasets accelerate sentencepiece
+    conda install transformers datasets accelerate peft
     
     pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu126
 
@@ -91,4 +100,4 @@ Pre-trained Model 02: [Microsoft/phi-2](https://huggingface.co/microsoft/phi-2)
 
     `python -m ipykernel install --user --name=ENV_NAME`
 
-### links, screenies, references
+### References (Readings, Models, etc.)
