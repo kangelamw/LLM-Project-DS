@@ -1,6 +1,17 @@
 **LLM Project:**
 # Beyond Sentiment: Turning Negative Reviews into Actionable Insights
 
+**Contents**
+- [Project Details](#project-task)
+- [Deliverable](#deliverable)
+- [Who Benefits?](#who-benefits)
+- [Process Overview](#process-overview)
+- [Models & Datasets](#pre-trained-models--datasets)
+- [Performance Metrics](#performance-metrics)
+- [Hyperparameters](#hyperparameters)
+- [Reproducibility](#reproducibility)
+- [References (Readings, Models, etc.)](#references-readings-models-etc)
+
 ## **Project Task**
 This project goes beyond traditional sentiment analysis by integrating a more complex emotion detection into review processing. Using fine-tuned LLMs and emotion classification, we analyze negative reviews to uncover deeper emotional context and generate actionable insights. Instead of simply labeling sentiment as “positive” or “negative,” this approach identifies why an experience went wrong and how to improve it, allowing businesses to address concerns more effectively with meaningful, constructive feedback.
 
@@ -30,9 +41,7 @@ A model that can:
 
 <br>
 
-## **Process Overview**
-![Process Visual. To follow.]()
-
+### **Process Overview**
 1. Environment Set-Up
 2. Fetch and pre-process the dataset for inference.
 3. Use SamLowe's RoBERTa-based emotion classification model on dataset.
@@ -43,26 +52,88 @@ A model that can:
 8. Deployment
 
 
-### Pre-trained Models, Datasets & API
-Dataset: [YELP's Full Review Dataset](https://huggingface.co/datasets/Yelp/yelp_review_full)
-- The page implies it may contain non-english reviews, so I'll try and keep just english ones.
+## Pre-trained Models & Datasets
+Dataset &rarr; [YELP's Full Review Dataset](https://huggingface.co/datasets/Yelp/yelp_review_full)
 
-Pre-trained Model 01: [TheBloke/Mistral-7B-Instruct-v0.1-GGUF](https://huggingface.co/mistralai/Mistral-7B-v0.1)
+Pre-trained Model 01 &rarr; [TheBloke/Mistral-7B-Instruct-v0.1-GGUF](https://huggingface.co/mistralai/Mistral-7B-v0.1)
 - For text generation of constructive feedback to finetune phi-2 with.
 
-Pre-trained Model 02: [Microsoft/phi-2](https://huggingface.co/microsoft/phi-2)
+Pre-trained Model 02 &rarr; [Microsoft/phi-2](https://huggingface.co/microsoft/phi-2)
 - Finetune to generate constructive feedback on YELP reviews + emotions.
 
-### Performance Metrics
-I'm gonna be using LLM-as-a-Judge approach here, more specifically, [`judges` module](https://pypi.org/project/judges/)
+## Performance Metrics: BLEURT, BERTScore and METEOR
+- **BLEURT:** best for capturing meaning
+    <span style="font-size:12px;">
+    |  | |
+    |------------------|-------------|
+    | > 0.5            | Very high similarity, high-quality generation |
+    | 0.3 – 0.5        | Good similarity, but some minor differences |
+    | 0.1 – 0.3        | Moderate similarity, some mismatches |
+    | < 0.1            | Weak similarity, possible errors in generation |
+    | < 0.0            | Very poor match, unrelated text |
+    </span>
+- **BERTScore:** best for semantic similarity (good for context-heavy text)
+    <span style="font-size:12px;">
+    | | |
+    |--------------------|-------------|
+    | > 0.9              | Almost identical output |
+    | 0.8 – 0.9          | Very similar, minor differences |
+    | 0.7 – 0.8          | Good similarity, noticeable differences |
+    | 0.5 – 0.7          | Some overlap, but significant mismatches |
+    | < 0.5              | Poor similarity, possibly incorrect output |
+    </span>
+- **METEOR:** best for matching n-grams & synonyms (useful for paraphrased text)
+    <span style="font-size:12px;">
+    | | |
+    |------------------|-------------|
+    | > 0.7            | Very high overlap, near-perfect match |
+    | 0.5 – 0.7        | Good overlap, some variations |
+    | 0.3 – 0.5        | Moderate similarity, but important differences |
+    | 0.1 – 0.3        | Weak similarity, some keywords match but meaning differs |
+    | < 0.1            | Poor similarity, almost no matching |
+    </span>
 
-I'll be using the grader, and the ff metrics:
-- Relevance Evaluation
-- Response Quality Evaluation
+<br>
 
-My current benchmark is mistral7b's generated responses to compare against non-fine-tuned phi-2's responses and the fine-tuned version's responses. It will serve as the 'ground truth' and I've read some of mistral's responses, they were pretty good. It could be better with some fine-tuning, but what we want is a more portable, smaller model.
+> My current benchmark is mistral7b's generated responses to compare against non-fine-tuned phi-2's responses and the fine-tuned version's responses.
 
-### Hyperparameters
+> It will serve as the 'ground truth' and I've read some of mistral's responses, they were pretty good. It could be better with some fine-tuning, but what we want is a more portable, smaller model.
+
+---
+
+### <center> phi-2's Initial Performance Summary</center>
+
+<center>
+
+|        |   bleurt |   bertscore |   meteor |
+|:-------|---------:|------------:|---------:|
+| mean   | -0.71545 |     0.84724 |   0.1909 |
+| median | -0.67285 |     0.8481  |   0.1909 |
+
+</center>
+
+Phi-2 is capturing the core meaning or context of the text well, suggesting it is understanding the essence of the task or response well. 
+
+Despite the good contextual understanding, Phi-2 is not aligning well with Mistral’s output at the meaning level. This could indicate that it’s missing some subtle semantic nuances, or not adhering strictly to the expected response.
+
+You can read more about it [here](/notebooks/3-pre-trained-model.ipynb).
+
+---
+
+### <center> Fine-tuned phi-2's Performance Summary </center>
+
+<center>
+
+*markdown here
+
+</center>
+
+
+
+<br>
+
+
+## Hyperparameters
 (fill in details about which hyperparameters you found most important/relevant while optimizing your model)
 
 <br>
@@ -91,13 +162,15 @@ My current benchmark is mistral7b's generated responses to compare against non-f
 
     conda install -c plotly plotly=5.24.1
 
-    conda install transformers datasets accelerate peft
+    conda install transformers datasets accelerate peft evaluate
     
-    pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu126
-
+    pip3 install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu126 # Check the official pytorch page for installations for your device/versions.
+    
     ```
 3. Register Jupyter kernel
 
     `python -m ipykernel install --user --name=ENV_NAME`
 
+
 ### References (Readings, Models, etc.)
+*currently collecting these in [project journal](/Project_Journal.md)*

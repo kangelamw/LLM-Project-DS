@@ -177,14 +177,45 @@ Finished the UI in about 2-3 hrs.
 
 <br>
 
-### Judges/Evaluating the model
-We need the 'grader' kind. They have a classification one as well.
-- Relevance Evaluation (from judges.graders.relevance import ReliableCIRelevance)
-- Response Quality Evaluation (from judges.graders.response_quality import MTBenchChatBotResponseQuality)
+### Evaluating the model
+I am debating trying BLEURT. BERTscore and MeteorScore as well, all are non-LLM scorer according to [this](https://www.confident-ai.com/blog/llm-evaluation-metrics-everything-you-need-for-llm-evaluation) article.
 
-I am debating trying BERTscore and MoverScore as well, both are non-LLM scorer according to [this](https://www.confident-ai.com/blog/llm-evaluation-metrics-everything-you-need-for-llm-evaluation) article.
+- We are using:
+  - [BLEURT (Bilingual Evaluation Understudy with Representations from Transformers)](https://github.com/google-research/bleurt)
+  - BERTScore
+  - Meteor Score -- Not using due to (seemingly endless) dependency errors...
 
+  <span style="font-size:12px;">
 
+  | **BLEURT Score** | **Meaning** |
+  |------------------|-------------|
+  | > 0.5            | Very high similarity, high-quality generation |
+  | 0.3 – 0.5        | Good similarity, but some minor differences |
+  | 0.1 – 0.3        | Moderate similarity, some mismatches |
+  | < 0.1            | Weak similarity, possible errors in generation |
+  | < 0.0            | Very poor match, unrelated text |
+
+  <br>
+
+  | **BERTScore (F1)** | **Meaning** |
+  |--------------------|-------------|
+  | > 0.9              | Almost identical output |
+  | 0.8 – 0.9          | Very similar, minor differences |
+  | 0.7 – 0.8          | Good similarity, noticeable differences |
+  | 0.5 – 0.7          | Some overlap, but significant mismatches |
+  | < 0.5              | Poor similarity, possibly incorrect output |
+
+  <br>
+
+  | **METEOR Score** | **Meaning** |
+  |------------------|-------------|
+  | > 0.7            | Very high overlap, near-perfect match |
+  | 0.5 – 0.7        | Good overlap, some variations |
+  | 0.3 – 0.5        | Moderate similarity, but important differences |
+  | 0.1 – 0.3        | Weak similarity, some keywords match but meaning differs |
+  | < 0.1            | Poor similarity, almost no matching |
+
+  </span>
 
 ---
 
@@ -210,6 +241,9 @@ I am debating trying BERTscore and MoverScore as well, both are non-LLM scorer a
 
 **Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena**
 - https://arxiv.org/abs/2306.05685
+
+**BLEURT: a Transfer Learning-Based Metric for Natural Language Generation**
+- https://github.com/google-research/bleurt
 
 ---
 
