@@ -178,7 +178,7 @@ Finished the UI in about 2-3 hrs.
 <br>
 
 ### Evaluating the model
-I am debating trying BLEURT. BERTscore and MeteorScore as well, all are non-LLM scorer according to [this](https://www.confident-ai.com/blog/llm-evaluation-metrics-everything-you-need-for-llm-evaluation) article.
+I am debating trying BLEURT, BERTscore and MeteorScore. All are non-LLM scorer according to [this](https://www.confident-ai.com/blog/llm-evaluation-metrics-everything-you-need-for-llm-evaluation) article.
 
 - We are using:
   - [BLEURT (Bilingual Evaluation Understudy with Representations from Transformers)](https://github.com/google-research/bleurt)
@@ -216,6 +216,11 @@ I am debating trying BLEURT. BERTscore and MeteorScore as well, all are non-LLM 
   | < 0.1            | Poor similarity, almost no matching |
 
   </span>
+
+> It was mentioned that these may be unreliable, but a combination of them seems to be doing the trick.
+
+
+> I did consider using `judges`, but the dependencies were c r a z y.
 
 ---
 

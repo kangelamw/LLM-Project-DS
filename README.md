@@ -8,8 +8,12 @@
 - [Process Overview](#process-overview)
 - [Models & Datasets](#pre-trained-models--datasets)
 - [Performance Metrics](#performance-metrics)
+    - [phi-2's Initial Performance Summary](#phi-2s-initial-performance-summary)
+    - [Fine-tuned phi-2's Performance Summary](#fine-tuned-phi-2s-performance-summary)
 - [Hyperparameters](#hyperparameters)
 - [Reproducibility](#reproducibility)
+    - [File Structure](#repo-file-structure)
+    - [Setting up](#setting-up-dependencies)
 - [References (Readings, Models, etc.)](#references-readings-models-etc)
 
 ## **Project Task**
@@ -101,7 +105,7 @@ Pre-trained Model 02 &rarr; [Microsoft/phi-2](https://huggingface.co/microsoft/p
 
 ---
 
-### <center> phi-2's Initial Performance Summary</center>
+### <center> phi-2's Initial Performance Summary </center>
 
 <center>
 
@@ -112,9 +116,13 @@ Pre-trained Model 02 &rarr; [Microsoft/phi-2](https://huggingface.co/microsoft/p
 
 </center>
 
-Phi-2 is capturing the core meaning or context of the text well, suggesting it is understanding the essence of the task or response well. 
+![bleurt](/images/bleurt_score_distribution.png)
 
-Despite the good contextual understanding, Phi-2 is not aligning well with Mistral’s output at the meaning level. This could indicate that it’s missing some subtle semantic nuances, or not adhering strictly to the expected response.
+![bertscore](/images/bertscore_f1_distribution.png)
+
+Phi-2 is capturing the core meaning or context of the text well, suggesting it is understanding the essence of the task or response well (BERTScore F1). Despite the good contextual understanding, Phi-2 is not aligning well with Mistral’s output at the meaning level (BLEURT Score). This could indicate that it’s missing some subtle semantic nuances, or not adhering strictly to the expected response as shown below (METEOR score against BLEURT and BERTScore)
+
+![scatterplot](/images/phi-2_vs_mistral_alignment.png)
 
 You can read more about it [here](/notebooks/3-pre-trained-model.ipynb).
 
