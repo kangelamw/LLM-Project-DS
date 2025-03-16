@@ -126,29 +126,100 @@ Phi-2 is capturing the core meaning or context of the text well, suggesting it i
 
 You can read more about it [here](/notebooks/3-pre-trained-model.ipynb).
 
+| initial_metrics |   count |      mean |         std |     min |      25% |      50% |       75% |    max |
+|:----------|--------:|----------:|------------:|--------:|---------:|---------:|----------:|-------:|
+| bleurt    |    1000 | -0.756606 | 0.353658    | -1.6119 | -1.02372 | -0.70085 | -0.488175 | 0.8601 |
+| bertscore |    1000 |  0.838373 | 0.0194086   |  0.787  |  0.8235  |  0.8395  |  0.852025 | 0.9851 |
+| meteor    |    1000 |  0.2222   | 5.22066e-15 |  0.2222 |  0.2222  |  0.2222  |  0.2222   | 0.2222 |
+
+---
+---
 ---
 
 ### <center> Fine-tuned phi-2's Performance Summary </center>
 
 <center>
 
-*markdown here
+|        |    bleurt |   bertscore |   meteor |
+|:-------|----------:|------------:|---------:|
+| mean   | -0.376466 |    0.885482 |   0.2318 |
+| median | -0.33835  |    0.8873   |   0.2318 |
 
 </center>
 
+![fine_bleurt](/images/fine-tuned_bleurt_score_distribution.png)
 
+![fine_bertscore](/images/fine-tuned_bertscore_f1_distribution.png)
+
+blaaah
+
+![fine_scatterplot](/images/fine-tuned_phi-2_vs_mistral_alignment.png)
+
+| fine-tuned metrics  |   count |      mean |         std |     min |       25% |      50% |       75% |    max |
+|:----------|--------:|----------:|------------:|--------:|----------:|---------:|----------:|-------:|
+| bleurt    |    1000 | -0.376466 | 0.286724    | -1.8587 | -0.548975 | -0.33835 | -0.159225 | 0.2163 |
+| bertscore |    1000 |  0.885482 | 0.0166502   |  0.7906 |  0.876675 |  0.8873  |  0.897    | 0.9282 |
+| meteor    |    1000 |  0.2318   | 1.44401e-15 |  0.2318 |  0.2318   |  0.2318  |  0.2318   | 0.2318 |
 
 <br>
 
 
 ## Hyperparameters
-(fill in details about which hyperparameters you found most important/relevant while optimizing your model)
+#### During training:
+- learning_rate=2e-5
+    - 
+- metric_for_best_model="loss" + greater_is_better=False
+    - minimizing loss
+- num_train_epochs=3
+    - any more and it starts overfittinh
+- weight_decay=0.01
+- optim="adamw_torch_fused"
+
+#### During generation:
+- temperature=0.5
+    - the model tends to tell stories or write entirely different things
+- top_p=0.9
+    - stricter generation
+- no_repeat_ngram_size=3
+    - it was a bit of a parrot without this
 
 <br>
 
 ## **Reproducibility**
 ### Repo File Structure
->> Later
+
+    ├── data
+    │   ├── // The rest were not included/uploaded, more like data checkpoints //
+    │   ├── ready_for_phi-2
+    │   │   ├── eval
+    │   │   │   ├── fine-tuned_phi2_vs_mistral_scores.csv
+    │   │   │   ├── initial_phi2_vs_mistral_scores.csv
+    │   │   │   ├── train10k_sample.csv
+    │   │   │   ├── train10k_sample_fine-tuned.csv
+    │   │   ├── test_01.csv
+    │   │   ├── test_02.csv
+    │   │   ├── train_01.csv
+    │   │   ├── train_02.csv
+    ├── images
+    │   ├── // images //
+    ├── models
+    │   ├── // checkpoints //
+    │   ├── phi-2_01
+    │   │   ├── // model path //
+    │   ├── phi-2_full_2
+    │   │   ├── // Model v2 -- evaluated //
+    │   ├── runs
+    │   │   ├── // RUNS //
+    ├── notebooks
+    │   ├── 1-preprocessing.ipynb
+    │   ├── 2-representation.ipynb
+    │   ├── 3-pre-trained-model.ipynb
+    │   ├── 4-optimization.ipynb
+    │   ├── 5-deployment.ipynb
+    │   ├── etc.ipynb
+    │   ├── functions.py
+    ├── Project_Journal.md
+    ├── README.md
 
 ### Rig:
 - **GPU:** 12GB NVidia RTX 3060TI
