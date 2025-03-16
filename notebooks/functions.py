@@ -50,7 +50,6 @@ def clean_text(review):
 
 
 # ========== Prompt Functions ========== #
-
 def create_prompt(text, emotions, label):
   """
   Create a prompt for the model to generate a response to a customer review.
