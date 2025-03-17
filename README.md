@@ -128,14 +128,12 @@ Phi-2 is capturing the core meaning or context of the text well, suggesting it i
 
 You can read more about it [here](/notebooks/3-pre-trained-model.ipynb).
 
-| initial_metrics |   count |      mean |         std |     min |      25% |      50% |       75% |    max |
-|:----------|--------:|----------:|------------:|--------:|---------:|---------:|----------:|-------:|
-| bleurt    |    1000 | -0.756606 | 0.353658    | -1.6119 | -1.02372 | -0.70085 | -0.488175 | 0.8601 |
-| bertscore |    1000 |  0.838373 | 0.0194086   |  0.787  |  0.8235  |  0.8395  |  0.852025 | 0.9851 |
-| meteor    |    1000 |  0.2222   | 5.22066e-15 |  0.2222 |  0.2222  |  0.2222  |  0.2222   | 0.2222 |
+| initial_metrics |    mean |         std |     min |      25% |      50% |       75% |    max |
+|:----------|----------:|------------:|--------:|---------:|---------:|----------:|-------:|
+| bleurt    | -0.756606 | 0.353658    | -1.6119 | -1.02372 | -0.70085 | -0.488175 | 0.8601 |
+| bertscore |  0.838373 | 0.0194086   |  0.787  |  0.8235  |  0.8395  |  0.852025 | 0.9851 |
+| meteor    |  0.2222   | 5.22066e-15 |  0.2222 |  0.2222  |  0.2222  |  0.2222   | 0.2222 |
 
----
----
 ---
 
 ### <center> Fine-tuned phi-2's Performance Summary </center>
@@ -163,11 +161,11 @@ This is great in a way that maybe an extra round of training with 1-2k more rows
 
 You can read more about it [here](/notebooks/4-optimization.ipynb).
 
-| fine-tuned metrics  |   count |      mean |         std |     min |       25% |      50% |       75% |    max |
-|:----------|--------:|----------:|------------:|--------:|----------:|---------:|----------:|-------:|
-| bleurt    |    1000 | -0.376466 | 0.286724    | -1.8587 | -0.548975 | -0.33835 | -0.159225 | 0.2163 |
-| bertscore |    1000 |  0.885482 | 0.0166502   |  0.7906 |  0.876675 |  0.8873  |  0.897    | 0.9282 |
-| meteor    |    1000 |  0.2318   | 1.44401e-15 |  0.2318 |  0.2318   |  0.2318  |  0.2318   | 0.2318 |
+| fine-tuned metrics  |   mean |         std |     min |       25% |      50% |       75% |    max |
+|:----------|----------:|------------:|--------:|----------:|---------:|----------:|-------:|
+| bleurt    | -0.376466 | 0.286724    | -1.8587 | -0.548975 | -0.33835 | -0.159225 | 0.2163 |
+| bertscore |  0.885482 | 0.0166502   |  0.7906 |  0.876675 |  0.8873  |  0.897    | 0.9282 |
+| meteor    |  0.2318   | 1.44401e-15 |  0.2318 |  0.2318   |  0.2318  |  0.2318   | 0.2318 |
 
 <br>
 
@@ -210,14 +208,6 @@ You can read more about it [here](/notebooks/4-optimization.ipynb).
     │   │   ├── train_02.csv
     ├── images
     │   ├── // images //
-    ├── models
-    │   ├── // checkpoints //
-    │   ├── phi-2_01
-    │   │   ├── // model path //
-    │   ├── phi-2_full_2
-    │   │   ├── // Model v2 -- evaluated //
-    │   ├── runs
-    │   │   ├── // RUNS //
     ├── notebooks
     │   ├── 1-preprocessing.ipynb
     │   ├── 2-representation.ipynb
@@ -226,6 +216,7 @@ You can read more about it [here](/notebooks/4-optimization.ipynb).
     │   ├── 5-deployment.ipynb
     │   ├── etc.ipynb
     │   ├── functions.py
+    ├── LICENSE // MIT
     ├── Project_Journal.md
     ├── README.md
 
@@ -325,7 +316,7 @@ You can read more about it [here](/notebooks/4-optimization.ipynb).
 ---
 
 ### Videos
-> Had a fair bit of learning to cover.
+> Had a fair bit of learning to cover, some nice videos worth watching.
 
 **LoRA & QLoRA Fine-tuning Explained In-Depth**
 - https://youtu.be/t1caDsMzWBk?si=nvqFEcR30o-3rnY0
@@ -337,6 +328,9 @@ You can read more about it [here](/notebooks/4-optimization.ipynb).
 - https://youtu.be/nvBXf7s7vTI?si=qpxrpJb-dX-XYbcE
 
 **Fine-Tuning Large Language Models (LLMs) | w/ Example Code**
+- https://youtu.be/eC6Hd1hFvos?si=FnwHjlNmHGStkIqP
+
+**What is LoRA? Low-Rank Adaptation for finetuning LLMs EXPLAINED**
 - https://youtu.be/KEv-F5UkhxU?si=wREqvQg-U9IkyAN_
 
 **What is a Context Window?**
