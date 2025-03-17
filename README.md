@@ -11,6 +11,8 @@
     - [phi-2's Initial Performance Summary](#phi-2s-initial-performance-summary)
     - [Fine-tuned phi-2's Performance Summary](#fine-tuned-phi-2s-performance-summary)
 - [Hyperparameters](#hyperparameters)
+    - [During training](#during-training)
+    - [During generation](#during-generation)
 - [Reproducibility](#reproducibility)
     - [File Structure](#repo-file-structure)
     - [Setting up](#setting-up-dependencies)
@@ -151,9 +153,15 @@ You can read more about it [here](/notebooks/3-pre-trained-model.ipynb).
 
 ![fine_bertscore](/images/fine-tuned_bertscore_f1_distribution.png)
 
-blaaah
+Phi-2's semantic understanding of what needs to be done has improved. The fine-tuning process has led to better semantic alignment and contextual similarity, as shown by the improvements in BLEURT, BERTScore, and METEOR.
+
+While Phi-2 now mirrors Mistral’s responses more effectively, there is still room for improvement. BLEURT is still negative, indicating that some fine-grained semantic details might be missing. Further refinements could help Phi-2 align even more closely with Mistral’s outputs.
+
+This is great in a way that maybe an extra round of training with 1-2k more rows per training would get it on par with Mistral's. I have about 14k/2k of train/test I could use yet.
 
 ![fine_scatterplot](/images/fine-tuned_phi-2_vs_mistral_alignment.png)
+
+You can read more about it [here](/notebooks/4-optimization.ipynb).
 
 | fine-tuned metrics  |   count |      mean |         std |     min |       25% |      50% |       75% |    max |
 |:----------|--------:|----------:|------------:|--------:|----------:|---------:|----------:|-------:|
@@ -251,5 +259,85 @@ blaaah
     `python -m ipykernel install --user --name=ENV_NAME`
 
 
-### References (Readings, Models, etc.)
-*currently collecting these in [project journal](/Project_Journal.md)*
+## References (Readings, Models, etc.)
+### Readings
+> Just random things I found that I read to inform decisions and learn, but not all made it to this project.
+
+**Enable your device for Development**
+-   https://learn.microsoft.com/en-us/windows/apps/get-started/enable-your-device-for-development
+
+**GoEmotions**
+- https://github.com/google-research/google-research/blob/master/goemotions/README.md
+- https://huggingface.co/datasets/google-research-datasets/go_emotions
+
+**Leveraging LLM-as-a-Judge for Automated and Scalable Evaluation**
+- https://www.confident-ai.com/blog/why-llm-as-a-judge-is-the-best-llm-evaluation-method
+- https://github.com/confident-ai/deepeval
+
+**Reliable Confidence Intervals for Information Retrieval Evaluation Using Generative A.I.**
+- https://dl.acm.org/doi/10.1145/3637528.3671883
+
+**Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena**
+- https://arxiv.org/abs/2306.05685
+
+**BLEURT: a Transfer Learning-Based Metric for Natural Language Generation**
+- https://github.com/google-research/bleurt
+
+**Hugging Face Inference Providers**
+- https://huggingface.co/blog/inference-providers
+
+**Hugging Face Docs**
+- Evaluate: https://huggingface.co/docs/evaluate/index
+- PEFT/LoRA: https://huggingface.co/docs/peft/index
+- BitsAndBytes: https://huggingface.co/docs/bitsandbytes/index
+- Trainers: https://huggingface.co/docs/transformers/index
+
+<br>
+
+---
+
+### Models
+> Used in the project
+
+**SamLowe/roberta-base-go_emotions**
+- https://huggingface.co/SamLowe/roberta-base-go_emotions
+- https://github.com/samlowe/go_emotions-dataset/blob/main/eval-roberta-base-go_emotions.ipynb
+
+**Microsoft/phi-2**
+- https://huggingface.co/microsoft/phi-2
+
+**Mistral-7B-v0.1**
+- https://huggingface.co/mistralai/Mistral-7B-v0.1
+
+
+<br>
+
+---
+
+### Datasets
+> Base dataset used in the project.
+
+**YelpReviewFull**
+- https://huggingface.co/datasets/Yelp/yelp_review_full
+- Citation Information
+  - Xiang Zhang, Junbo Zhao, Yann LeCun. Character-level Convolutional Networks for Text Classification. Advances in Neural Information Processing Systems 28 (NIPS 2015)
+
+---
+
+### Videos
+> Had a fair bit of learning to cover.
+
+**LoRA & QLoRA Fine-tuning Explained In-Depth**
+- https://youtu.be/t1caDsMzWBk?si=nvqFEcR30o-3rnY0
+
+**Simple Training with the Transformers Trainer**
+- https://youtu.be/u--UVvH-LIQ?si=1HNnozodyLX6vlhC
+
+**The Trainer API**
+- https://youtu.be/nvBXf7s7vTI?si=qpxrpJb-dX-XYbcE
+
+**Fine-Tuning Large Language Models (LLMs) | w/ Example Code**
+- https://youtu.be/KEv-F5UkhxU?si=wREqvQg-U9IkyAN_
+
+**What is a Context Window?**
+- https://youtu.be/-QVoIxEpFkM?si=01uTM0ZnyAellR5l

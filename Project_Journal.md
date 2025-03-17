@@ -8,7 +8,6 @@ This may be a bit of a wall. Just a bunch of thought processes. It's semi-struct
   - [Time Constraints](#time-constraints)
   - [Final Function STructure](#final-function-structure)
   - [Build Interface](#build-interface----flutterflow-it-allows-api-calls)
-- [Resources](#resources)
 
 ---
 
@@ -17,22 +16,22 @@ This may be a bit of a wall. Just a bunch of thought processes. It's semi-struct
 ## Planning
 | Process |                                                       | Status   |
 |----|------------------------------------------------------------|----------|
-| 01 | Environment Set-Up                                         | Completed, Day 01 |
-| 02 | Post project details on Discord                            | Completed, Day 01 |
-| 03 | Inspect, Clean & Prep: YELP Dataset                        | Completed, Day 02 |
-| 04 | -- Tokenize: YELP Dataset --                               | Completed, Day 02 |
-| 05 | Check with a mentor: Compass AR                            | Completed, Day 03 |
-| 06 | Classify YELP Dataset                                      | Completed, Day 03 |
-| 07 | Inspect & Prep New Dataset                                 | Completed, Day 03 |
-| 08 | Generate outputs from mistral-7b to fine-tune phi-2 with.  | Completed, Day 08 |
-| 09 | Prep/Train phi-2                                           | Pending |
-| 10 | Evaluate model                                             | Pending |
-| 11 | Build final function to generate output.                   | Pending |
-| 12 | Deploy & Test API                                          | Pending |
+| 01 | Environment Set-Up                                         | Completed |
+| 02 | Post project details on Discord                            | Completed |
+| 03 | Inspect, Clean & Prep: YELP Dataset                        | Completed |
+| 04 | -- Tokenize: YELP Dataset --                               | Completed |
+| 05 | Check with a mentor: Compass AR                            | Completed |
+| 06 | Classify YELP Dataset                                      | Completed |
+| 07 | Inspect & Prep New Dataset                                 | Completed |
+| 08 | Generate outputs from mistral-7b to fine-tune phi-2 with.  | Completed |
+| 09 | Prep/Train phi-2                                           | Completed |
+| 10 | Evaluate model                                             | Completed |
+| 11 | Build final function to generate output.                   | Completed |
+| 12 | Deploy & Test API                                          | Skipped |
 | -- | **Create Interface *(If we have at least 2-3 days left)*** | --- --- |
-| 01 | Build Flutterflow UI                                       | Pending |
-| 02 | Test/Connect API                                           | Pending |
-| 03 | Deploy & Test Web App                                      | Pending |
+| 01 | Build Flutterflow UI                                       | Completed |
+| 02 | Test/Connect API                                           | Skipped |
+| 03 | Deploy & Test Web App                                      | Skipped |
 
 ---
 
@@ -221,61 +220,3 @@ I am debating trying BLEURT, BERTscore and MeteorScore. All are non-LLM scorer a
 
 
 > I did consider using `judges`, but the dependencies were c r a z y.
-
----
-
-<br>
-
-# Resources
-### <span style="font-size:22px;">Readings</span>
-> Just random things I found that I read to inform decisions, but not all made it to this project.
-
-**Enable your device for Development**
--   https://learn.microsoft.com/en-us/windows/apps/get-started/enable-your-device-for-development
-
-**GoEmotions**
-- https://github.com/google-research/google-research/blob/master/goemotions/README.md
-- https://huggingface.co/datasets/google-research-datasets/go_emotions
-
-**Leveraging LLM-as-a-Judge for Automated and Scalable Evaluation**
-- https://www.confident-ai.com/blog/why-llm-as-a-judge-is-the-best-llm-evaluation-method
-- https://github.com/confident-ai/deepeval
-
-**Reliable Confidence Intervals for Information Retrieval Evaluation Using Generative A.I.**
-- https://dl.acm.org/doi/10.1145/3637528.3671883
-
-**Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena**
-- https://arxiv.org/abs/2306.05685
-
-**BLEURT: a Transfer Learning-Based Metric for Natural Language Generation**
-- https://github.com/google-research/bleurt
-
----
-
-### <span style="font-size:22px;">Models</span>
-> Used in the project
-
-**SamLowe/roberta-base-go_emotions**
-- https://huggingface.co/SamLowe/roberta-base-go_emotions
-- https://github.com/samlowe/go_emotions-dataset/blob/main/eval-roberta-base-go_emotions.ipynb
-
-**Microsoft/phi-2**
-- https://huggingface.co/microsoft/phi-2
-
-**Mistral-7B-v0.1**
-- https://huggingface.co/mistralai/Mistral-7B-v0.1
-
-**judges**
-- https://pypi.org/project/judges/
-
-<br>
-
----
-
-### <span style="font-size:22px;">Datasets</span>
-> Base dataset used in the project.
-
-**YelpReviewFull**
-- https://huggingface.co/datasets/Yelp/yelp_review_full
-- Citation Information
-  - Xiang Zhang, Junbo Zhao, Yann LeCun. Character-level Convolutional Networks for Text Classification. Advances in Neural Information Processing Systems 28 (NIPS 2015)
