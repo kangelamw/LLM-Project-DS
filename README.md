@@ -30,7 +30,7 @@ A model that can:
 #### Model on Hugging Face:
 https://huggingface.co/kangelamw/negative-reviews-into-actionable-insights
 
-![Screenshot on HuggingFace]()
+![Screenshot on HuggingFace](/images/Model_Screenshot.png)
 
 <br>
 
@@ -68,9 +68,13 @@ Dataset &rarr; [YELP's Full Review Dataset](https://huggingface.co/datasets/Yelp
 
 Pre-trained Model 01 &rarr; [TheBloke/Mistral-7B-Instruct-v0.1-GGUF](https://huggingface.co/mistralai/Mistral-7B-v0.1)
 - For text generation of constructive feedback to finetune phi-2 with.
+- Used for inference only.
 
 Pre-trained Model 02 &rarr; [Microsoft/phi-2](https://huggingface.co/microsoft/phi-2)
 - Finetune to generate constructive feedback on YELP reviews + emotions.
+- Used for inference as a base model
+- Used for fine-tuning
+- Used for inference as a fine-tuned model
 
 ## Performance Metrics: BLEURT, BERTScore and METEOR
 - **BLEURT:** best for capturing meaning
