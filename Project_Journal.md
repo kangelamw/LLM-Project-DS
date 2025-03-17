@@ -220,3 +220,34 @@ I am debating trying BLEURT, BERTscore and MeteorScore. All are non-LLM scorer a
 
 
 > I did consider using `judges`, but the dependencies were c r a z y.
+
+### Ethics Activity
+1. Decision 1: **Data Selection and Fairness Checks**
+    - Used **stratified sampling** to maintain dataset balance.
+      - An imbalanced dataset could lead to a poorly trained model that may fail to generalize across all labels.  
+      - Fair data selection is key for an ethical, reliable model.
+      - Prevents the model from seeing one label more than another. It has to learn from all.
+      - Helps ensure **fairness in model generation**.
+    - Clearly communicated how the model needs more training and provided more/the rest of the training data on the repo for the model.
+
+
+2. Decision 2: **Ethical Fine-Tuning & Model Behavior Analysis**
+    - Ensured that the use case aligns with ethical AI principles.  
+      - Encourages responsible AI use by making model strengths/limitations transparent.
+    - Documented model behavior, including nuances and edge cases.
+      - Helps users interpret model outputs correctly, reducing overreliance.
+
+3. Decision 3: **Clear Usage Limitations in Documentation**
+    - Clearly defined **out-of-scope use cases** in the README.
+      - Reduces the risk of misuse by setting clear ethical boundaries.  
+      - Encourages **human oversight** in decision-making.
+      - LLMs can hallucinate or be misused, so it's crucial to prevent harmful applications upfront.
+      - Transparency helps users understand what the model **can and cannot** be made to do.
+
+---
+
+### Ethics Activity - Quick Summary
+
+1.  **Fair Data Selection:** Made sure the training data was balanced to avoid the model favoring certain labels. This helps the model be fair and reliable. Plus, I shared the full dataset so others can train it as needed.
+2.  **Ethical Fine-Tuning:** I made sure the project aligns with ethical AI practices. I also kept track of how the model behaves, including its quirks, to help people understand its outputs.
+3.  **Clear Limitations:** I clearly spelled out what the model *shouldn't* be used for in the documentation. This helps prevent misuse and reminds users to use human judgment.

@@ -120,10 +120,10 @@ Pre-trained Model 02 &rarr; [Microsoft/phi-2](https://huggingface.co/microsoft/p
 
 <center>
 
-|        |   bleurt |   bertscore |   meteor |
-|:-------|---------:|------------:|---------:|
-| mean   | -0.71545 |     0.84724 |   0.1909 |
-| median | -0.67285 |     0.8481  |   0.1909 |
+| Initial performance  |    bleurt |   bertscore |   meteor |
+|:-------|----------:|------------:|---------:|
+| mean   | -0.756606 |    0.838373 |   0.2222 |
+| median | -0.70085  |    0.8395   |   0.2222 |
 
 </center>
 
@@ -149,7 +149,7 @@ You can read more about it [here](/notebooks/3-pre-trained-model.ipynb).
 
 <center>
 
-|        |    bleurt |   bertscore |   meteor |
+| Fine-tuned performance |    bleurt |   bertscore |   meteor |
 |:-------|----------:|------------:|---------:|
 | mean   | -0.376466 |    0.885482 |   0.2318 |
 | median | -0.33835  |    0.8873   |   0.2318 |
@@ -180,23 +180,39 @@ You can read more about it [here](/notebooks/4-optimization.ipynb).
 
 
 ## Hyperparameters
-#### During training:
-- learning_rate=2e-5
-    - 
-- metric_for_best_model="loss" + greater_is_better=False
-    - minimizing loss
-- num_train_epochs=3
-    - any more and it starts overfittinh
-- weight_decay=0.01
-- optim="adamw_torch_fused"
+#### **During training:**
+- `learning_rate=2e-5`
+    - This is the rate at which the model learns from the training data.
+- `metric_for_best_model="loss"` + `greater_is_better=False`
+    - The model aims to minimize the loss during training.
+- `num_train_epochs=3`
+    - Training for more epochs can lead to overfitting.
+- `weight_decay=0.01`
+    - A regularization technique to prevent overfitting.
+- `optim="adamw_torch_fused"`
+    - The optimizer used for training the model.
+    - This one is specifically optimized for CUDA-enabled GPUs which I was using.
 
-#### During generation:
-- temperature=0.5
-    - the model tends to tell stories or write entirely different things
-- top_p=0.9
-    - stricter generation
-- no_repeat_ngram_size=3
-    - it was a bit of a parrot without this
+#### **During generation:**
+- `temperature=0.5`
+    - Makes the model more deterministic. It has to be forced to 'focus' on the subject at hand.
+- `top_p=0.9`
+    - Stricter generation process. This model can be quite verbose and has a certain inclination towards story telling.
+- `no_repeat_ngram_size=3`
+    - This prevents the model from repeating phrases.It was a bit of a parrot without this.
+
+<br>
+
+## Future Plans
+1. Improve the train and test dataset
+    > I'll focus on the sample dataset I've been using to evaluate the model with. The idea is to review mistral's output and improve/paraphrase it to ensure it's up to human standards.
+    
+    > This could also be done on the test/training dataset, but to do it for the whole 15k, I may be better off improving hyperparameters during mistral's generation of the output.
+2. A few options
+    - Deploy as an API and develop a web app with it. I already have the [UI](/images/UI_screenshot.png) built, I just need to add either a switch or another page/tab.
+        > Originally, the plan was to start with 1 review at a time. I could do both.
+    - Turn it into a chatbot which could be asked to regenerate and improve its response.
+        > I don't know how to do that **yet**
 
 <br>
 
@@ -204,7 +220,7 @@ You can read more about it [here](/notebooks/4-optimization.ipynb).
 ### Repo File Structure
 
     ├── data
-    │   ├── // The rest were not included/uploaded, more like data checkpoints //
+    │   ├── // The rest were not included or uploaded, more like data checkpoints //
     │   ├── ready_for_phi-2
     │   │   ├── eval
     │   │   │   ├── fine-tuned_phi2_vs_mistral_scores.csv
@@ -215,6 +231,11 @@ You can read more about it [here](/notebooks/4-optimization.ipynb).
     │   │   ├── test_02.csv
     │   │   ├── train_01.csv
     │   │   ├── train_02.csv
+    │   ├── training_datasets
+    │   ├── 333_test.csv
+    │   ├── 999_train.csv
+    │   ├── test3k.csv
+    │   ├── train15k.csv
     ├── images
     │   ├── // images //
     ├── notebooks
