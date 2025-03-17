@@ -27,6 +27,13 @@ A model that can:
 - Turn complaints into useful, constructive insights.
 - (If time allows) Provide an easy-to-use interface.
 
+#### Model on Hugging Face:
+https://huggingface.co/kangelamw/negative-reviews-into-actionable-insights
+
+![Screenshot on HuggingFace]()
+
+<br>
+
 ### Who benefits?
 > You could fine-tune the final phi-2 trained model to your specific industry. I didn't do it here, but if you do it by batch, you could also get a summarization model to generate a summary of the outputs, and then you have your report.
 
@@ -53,9 +60,7 @@ A model that can:
 3. Use SamLowe's RoBERTa-based emotion classification model on dataset.
 4. Inspect and pre-process the dataset as input for output generation from a 'bigger' model: Mistral 7B
 5. Finetune 'smaller' model: Phi-2 for inference & Evaluate.
-6. Deployment
-7. Interface Building.
-8. Deployment
+6. Push to hub
 
 
 ## Pre-trained Models & Datasets
