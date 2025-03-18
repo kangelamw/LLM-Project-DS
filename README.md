@@ -376,3 +376,6 @@ You can read more about it [here](/notebooks/4-optimization.ipynb).
 
 **What is a Context Window?**
 - https://youtu.be/-QVoIxEpFkM?si=01uTM0ZnyAellR5l
+
+#### Grade
+![project](/images/llm_fine-tuning.png)

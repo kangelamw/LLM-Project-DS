@@ -45,7 +45,7 @@ This may be a bit of a wall. Just a bunch of thought processes. It's semi-struct
     - It has to pre-process the review/clean it on input. This is gonna be one long py file.
     - It doesn't have to see that again, the output could just be... emotions gathered + constructive feedback. Would be nice if it could do batch processing, but that can be compute intensive depending on how much data they have.
 - Mistral has 7B params, i'll try to find a smaller one to finetune. SamLowe's has 125M.
-- I'm gonna use Microsoft's phi-2 model. It only has 1.1B params, it's a lot smaller and may be a better fit for our task. I've read in passing somewhere, that MS phi's models are great for logic reasoning. I think it fits better with our business usecase. Below is a comparison between mistral-7b and phi-2:
+- I'm gonna use Microsoft's phi-2 model. It only has 2.7B params, it's a lot smaller and may be a better fit for our task. I've read in passing somewhere, that MS phi's models are great for logic reasoning. I think it fits better with our business usecase. Below is a comparison between mistral-7b and phi-2:
 
 | Feature        | Mistral 7B         | Phi-2 (2.7B)         |
 |---------------|--------------------|----------------------|
