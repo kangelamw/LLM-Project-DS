@@ -19,13 +19,14 @@
 - [References (Readings, Models, etc.)](#references-readings-models-etc)
 
 ## **Project Task**
-This project goes beyond traditional sentiment analysis by integrating a more complex emotion detection into review processing. Using fine-tuned LLMs and emotion classification, we analyze negative reviews to uncover deeper emotional context and generate actionable insights. Instead of simply labeling sentiment as “positive” or “negative,” this approach identifies why an experience went wrong and how to improve it, allowing businesses to address concerns more effectively with meaningful, constructive feedback.
+Using fine-tuned LLMs and emotion classification, we transform complaints into constructive, actionable insights that businesses can use. This goes beyond traditional sentiment analysis by:
+
+- Detecting specific emotions rather than just sentiment polarity (positive/negative)
+- Providing actionable recommendations based on the emotional analysis
+- Helping businesses understand what customers feel and what they can do to address their concerns
 
 ### Deliverable
-A model that can:
-- Analyze sentiment and emotions in reviews.
-- Turn complaints into useful, constructive insights.
-- (If time allows) Provide an easy-to-use interface.
+A model that can analyze sentiment and emotions in reviews, turn complaints into useful, constructive insights and if time allows provide an easy-to-use interface
 
 #### Model on Hugging Face:
 https://huggingface.co/kangelamw/negative-reviews-into-actionable-insights
@@ -58,9 +59,9 @@ https://huggingface.co/kangelamw/negative-reviews-into-actionable-insights
 1. Environment Set-Up
 2. Fetch and pre-process the dataset for inference.
 3. Use SamLowe's RoBERTa-based emotion classification model on dataset.
-4. Inspect and pre-process the dataset as input for output generation from a 'bigger' model: Mistral 7B
-5. Finetune 'smaller' model: Phi-2 for inference & Evaluate.
-6. Push to hub
+4. Inspect and pre-process the dataset as input for output generation from a 'bigger' model: Mistral 7B.
+5. Fine-tune 'smaller' model: Phi-2 for inference & Evaluate.
+6. Push to hub.
 
 
 ## Pre-trained Models & Datasets
