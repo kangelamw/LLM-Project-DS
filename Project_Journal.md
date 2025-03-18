@@ -182,7 +182,7 @@ I am debating trying BLEURT, BERTscore and MeteorScore. All are non-LLM scorer a
 - We are using:
   - [BLEURT (Bilingual Evaluation Understudy with Representations from Transformers)](https://github.com/google-research/bleurt)
   - BERTScore
-  - Meteor Score -- Not using due to (seemingly endless) dependency errors...
+  - Meteor Score
 
   <span style="font-size:12px;">
 

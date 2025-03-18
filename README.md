@@ -66,11 +66,14 @@ https://huggingface.co/kangelamw/negative-reviews-into-actionable-insights
 ## Pre-trained Models & Datasets
 Dataset &rarr; [YELP's Full Review Dataset](https://huggingface.co/datasets/Yelp/yelp_review_full)
 
-Pre-trained Model 01 &rarr; [TheBloke/Mistral-7B-Instruct-v0.1-GGUF](https://huggingface.co/mistralai/Mistral-7B-v0.1)
+Pre-trained Model 01 &rarr; [SamLowe/roberta-base-go_emotions](https://huggingface.co/SamLowe/roberta-base-go_emotions)
+- Used for emotion classification of reviews
+
+Pre-trained Model 02 &rarr; [Mistral-7B-Instruct-v0.1](https://huggingface.co/mistralai/Mistral-7B-v0.1)
 - For text generation of constructive feedback to finetune phi-2 with.
 - Used for inference only.
 
-Pre-trained Model 02 &rarr; [Microsoft/phi-2](https://huggingface.co/microsoft/phi-2)
+Pre-trained Model 03 &rarr; [Microsoft/phi-2](https://huggingface.co/microsoft/phi-2)
 - Finetune to generate constructive feedback on YELP reviews + emotions.
 - Used for inference as a base model
 - Used for fine-tuning
@@ -303,6 +306,12 @@ You can read more about it [here](/notebooks/4-optimization.ipynb).
 
 **BLEURT: a Transfer Learning-Based Metric for Natural Language Generation**
 - https://github.com/google-research/bleurt
+
+**BERTScore**
+- https://github.com/Tiiiger/bert_score
+
+**METEOR Score**
+-https://learn.microsoft.com/en-us/python/api/azure-ai-evaluation/azure.ai.evaluation.meteorscoreevaluator?view=azure-python
 
 **Hugging Face Inference Providers**
 - https://huggingface.co/blog/inference-providers
