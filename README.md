@@ -65,7 +65,7 @@ https://huggingface.co/kangelamw/negative-reviews-into-actionable-insights
 
 
 ## Pre-trained Models & Datasets
-Dataset &rarr; [YELP's Full Review Dataset](https://huggingface.co/datasets/Yelp/yelp_review_full)
+**Dataset** &rarr; [YELP's Full Review Dataset](https://huggingface.co/datasets/Yelp/yelp_review_full)
 
 Pre-trained Model 01 &rarr; [SamLowe/roberta-base-go_emotions](https://huggingface.co/SamLowe/roberta-base-go_emotions)
 - Used for emotion classification of reviews
@@ -75,9 +75,10 @@ Pre-trained Model 02 &rarr; [Mistral-7B-Instruct-v0.1](https://huggingface.co/mi
 - Used for inference only.
 
 Pre-trained Model 03 &rarr; [Microsoft/phi-2](https://huggingface.co/microsoft/phi-2)
-- Finetune to generate constructive feedback on YELP reviews + emotions.
-- Used for inference as a base model
-- Used for fine-tuning
+> *"When assessed against benchmarks testing common sense, language understanding, and logical reasoning, Phi-2 showcased a nearly state-of-the-art performance among models with less than 13 billion parameters"*
+
+For fine-tuning to generate constructive feedback on YELP reviews + emotions.
+- Used for inference as a base model (benchmark)
 - Used for inference as a fine-tuned model
 
 ## Performance Metrics: BLEURT, BERTScore and METEOR
