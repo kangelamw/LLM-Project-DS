@@ -1,1 +1,5 @@
-notebooks/__pycache__/functions.cpython-310.pyc
+notebooks/__pycache__
+data/chunks
+data/for_step_1
+data/for_step_2
+models/
